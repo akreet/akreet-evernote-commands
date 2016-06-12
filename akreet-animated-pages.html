@@ -9,8 +9,8 @@
                              class="fit"
                              selected="{{selected}}"
                              attr-for-selected="name"
-                             entry-animation="fade-in-animation"
-                             exit-animation="fade-out-animation"
+                             entry-animation="[[entryAnimation]]"
+                             exit-animation="[[exitAnimation]]"
                              on-neon-animation-finish="_onTransitionEnd">
             <content></content>
         </neon-animated-pages>
@@ -31,12 +31,19 @@
                 _lastSelected: {
                     type: Object,
                     value: null
+                },
+                entryAnimation: {
+                    type: String,
+                    value: null
+                },
+                exitAnimation: {
+                    type: String,
+                    value: null
                 }
             },
 
             ready: function() {
             },
-
 
             _onTransitionEnd: function (e) {
 
