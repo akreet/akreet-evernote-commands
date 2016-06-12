@@ -45,7 +45,7 @@
                 // confirm the target is the one that belongs to this router.
                 //if (e.target === this.$.pages) {
                 var detail = e.detail;
-                if (detail && detail.fromPage && detail.fromPage.getAttribute('app-route') && detail.toPage && detail.toPage.getAttribute('app-route')) {
+                if (detail && detail.fromPage && detail.fromPage.getAttribute('name') && detail.toPage && detail.toPage.getAttribute('name')) {
 
                     // reset last page.
                     if (detail.fromPage.reset) {
@@ -65,7 +65,7 @@
 
             _onSelectedChanged: function (newValue, oldValue) {
                 if (newValue && (typeof(newValue) === 'string') && oldValue && (typeof(oldValue) === 'string')) {
-                    this._lastSelected = this.$$('[app-route=' + oldValue + ']');
+                    this._lastSelected = this.$$('[name=' + oldValue + ']');
                 }
             }
 
