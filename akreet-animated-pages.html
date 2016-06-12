@@ -1,13 +1,76 @@
 <dom-module id="akreet-animated-pages">
+    <style>
+        :host {
+        }
+    </style>
     <template>
-        <style>
-        </style>
+
+        <neon-animated-pages id="nap"
+                             class="fit"
+                             selected="{{selected}}"
+                             attr-for-selected="app-route"
+                             entry-animation="fade-in-animation"
+                             exit-animation="fade-out-animation"
+                             on-neon-animation-finish="_onTransitionEnd">
+            <content></content>
+        </neon-animated-pages>
+
     </template>
-    <script>
-        (function() {
-            Polymer({
-                is: 'akreet-animated-pages'
-            });
-        })();
-    </script>
 </dom-module>
+<script>
+    (function () {
+        Polymer({
+            is: 'akreet-animated-pages',
+
+            properties: {
+                selected: {
+                    type: String,
+                    notify: true,
+                    observer: '_onSelectedChanged'
+                },
+                _lastSelected: {
+                    type: Object,
+                    value: null
+                }
+            },
+
+            ready: function() {
+            },
+
+
+            _onTransitionEnd: function (e) {
+
+                // onTransitionEnd will get called for every coreAnimatedPages object
+                // that is a child of this one, which is basically every one, so
+                // confirm the target is the one that belongs to this router.
+                //if (e.target === this.$.pages) {
+                var detail = e.detail;
+                if (detail && detail.fromPage && detail.fromPage.getAttribute('app-route') && detail.toPage && detail.toPage.getAttribute('app-route')) {
+
+                    // reset last page.
+                    if (detail.fromPage.reset) {
+                        this.async(function () {
+                            detail.fromPage.reset();
+                        }.bind(this));
+                    }
+
+                    // init new page.
+                    if (detail.toPage.init) {
+                        this.async(function () {
+                            detail.toPage.init();
+                        }.bind(this));
+                    }
+                }
+            },
+
+            _onSelectedChanged: function (newValue, oldValue) {
+                if (newValue && (typeof(newValue) === 'string') && oldValue && (typeof(oldValue) === 'string')) {
+                    this._lastSelected = this.$$('[app-route=' + oldValue + ']');
+                }
+            }
+
+        });
+
+    })();
+</script>
+
