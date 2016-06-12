@@ -15,6 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "neon-animation": "PolymerElements/neon-animation#^1.2.3"
+    "neon-animation": "PolymerElements/neon-animation#~1.0.9"
   }
 }
