@@ -72,7 +72,7 @@
 
             _onSelectedChanged: function (newValue, oldValue) {
                 if (newValue && (typeof(newValue) === 'string') && oldValue && (typeof(oldValue) === 'string')) {
-                    this._lastSelected = this.$$('[name=' + oldValue + ']');
+                    this._lastSelected = this.querySelector('[name=' + oldValue + ']');
                 }
             }
 
