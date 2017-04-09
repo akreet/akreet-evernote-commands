@@ -15,6 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "neon-animation": "PolymerElements/neon-animation#~1.0.9"
+    "akreet-base-command-behavior": "akreet/akreet-base-command-behavior"
   }
 }

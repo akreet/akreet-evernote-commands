@@ -1,0 +1,16 @@
+<link rel="import" href="../akreet-base-command-behavior/akreet-base-command-behavior.html">
+<script>
+    Polymer({
+        is: 'akreet-evernote-keywords-for-dimension',
+        behaviors: [akreet.BaseCommandBehavior],
+        execute: function(id, callback) {
+            this.createRequest({
+                method: 'GET',
+                url: "/evernote/protected/keywordsForDimension",
+                params: {id: id}
+            }).then(function(response) {
+                callback(response);
+            });
+        }
+    });
+</script>
