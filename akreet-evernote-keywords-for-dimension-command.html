@@ -6,8 +6,7 @@
         execute: function(callback) {
             this.createRequest({
                 method: 'GET',
-                url: "/evernote/protected/keywordsForDimension",
-                params: {id: id}
+                url: "/evernote/protected/keywordsForDimension"
             }).then(function(response) {
                 callback(response);
             });
