@@ -3,7 +3,7 @@
     Polymer({
         is: 'akreet-evernote-keywords-for-dimension-command',
         behaviors: [akreet.BaseCommandBehavior],
-        execute: function(id, callback) {
+        execute: function(callback) {
             this.createRequest({
                 method: 'GET',
                 url: "/evernote/protected/keywordsForDimension",
